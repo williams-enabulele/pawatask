@@ -43,4 +43,9 @@ export default class Header extends Vue {
    display: inline-block;
  }
 
+ .bold {
+   font-size: 20px;
+   font-weight: 800;
+ }
+
 </style>

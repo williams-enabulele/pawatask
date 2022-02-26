@@ -1,5 +1,5 @@
 <template>
-    <div class="modal">
+    <div class="modal" v-if="open">
     <div class="modal-content">
         <div class="center-spaced">
         <div class="title"><h2>Task Title <i class="lni lni-pencil"></i></h2> </div>
@@ -36,6 +36,7 @@
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
 
+
 @Options({
 
   props: {
@@ -43,11 +44,18 @@ import { Options, Vue } from "vue-class-component";
   },
 })
 export default class Comment extends Vue {
+
+   open = false
+   
+  toggleModal(){
+   this.open = !this.open
+  }
+
 }
 </script>
+
 <style scoped  lang="scss">
   .modal {
-    display: none;
     position: fixed; 
     z-index: $layer-modal-z-index;
     padding-top: 100px; 
@@ -67,22 +75,23 @@ export default class Comment extends Vue {
     border: 1px solid #888;
     width:40%;
   }
-    .wrapper {
-        display: flex;
-        justify-content: space-between;
-    }
+  .wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
 
-    .font{
+  .font{
         font-family: Montserrat;
-    }
+  }
 
-    .card {
+  .card {
          border-bottom: 2px solid rgb(170, 170, 170);
          margin-bottom: 35px;
-    }
+  }
 
-    .card-header {
+  .card-header {
         display: flex;
         justify-content: space-between;
-    }
+  }
 </style>
+

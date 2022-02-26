@@ -1,5 +1,5 @@
 <template>
-  <div class="center">
+  <div class="center" v-if="isEmpty">
      <img src="@/assets/empty.png" class="empty">
       <p>No task yet, create one!</p>
     
@@ -16,6 +16,12 @@ import { Options, Vue } from "vue-class-component";
   },
 })
 export default class EmptyTask extends Vue {
+  
+  isEmpty = true
+
+  get taskState(){
+    return 
+  }
 }
 </script>
 <style scoped  lang="scss">

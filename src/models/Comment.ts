@@ -1,5 +1,5 @@
-export interface comment {
+export interface CommentItem {
     id : string;
     content: string;
-    date: Date;
+    date: string;
 }

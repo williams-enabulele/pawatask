@@ -1,14 +1,16 @@
 <template>
-<div class="row">
-  <!-- <label class="block">
-      <input type="checkbox">
-      <span class="checkmark"></span>
-    </label>
-    <span class="mr-5">Task Title</span>
-      <div class="spaced">
-      <i class="fa-solid fa-calendar" style="margin-left: 45px"></i>
-    </div> -->
-</div>
+  <div class="spaced">
+    <div>
+      <label class="block">
+          <input type="checkbox">
+          <span class="checkmark"></span>
+      </label>
+      <span class="mr-5">Task Title</span>
+    </div>
+    <div>
+      <i class="fa-solid fa-calendar-day"></i> <span>05/05/2019</span> <span class="btn"><i class="fa-solid fa-comments"></i></span><span class="btn"><i class="fa-solid fa-pen"></i></span>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -24,6 +26,10 @@
     }
 </script>
 <style scoped  lang="scss">
+.spaced {
+  display: flex;
+  justify-content: space-between;
+}
 
 .block {
     display: block;
@@ -68,8 +74,6 @@
 
 .row {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
 }
 
 .block .checkmark:after {
@@ -84,6 +88,19 @@
 
 .mr-5 {
     margin-left: 35px;
+    display:inline-block;
 }
 
+.btn {
+  width: 25px;
+  height: 25px;
+  padding: 10px;
+  background: $color-button-bg;
+  margin: 0 5px;
+  color: #fff;
+}
+
+.btn:hover {
+  background: #313fbeee;
+}
 </style>

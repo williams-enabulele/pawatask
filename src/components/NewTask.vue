@@ -1,5 +1,5 @@
 <template>
-<div class="modal">
+<div class="modal" v-if="open">
     <div class="modal-content">
         <div class="center-spaced">
         <div class="title"><h2>New Task</h2></div>
@@ -35,12 +35,17 @@ import { Options, Vue } from "vue-class-component";
 })
 export default class HelloWorld extends Vue {
   msg!: string;
+  open = false
+   
+    toggleModal(){
+        this.open = !this.open
+    }
+
 }
 </script>
 
 <style scoped lang="scss">
   .modal {
-    display: none;
     position: fixed; 
     z-index: $layer-modal-z-index;
     padding-top: 100px; 

@@ -26,5 +26,5 @@ import TaskList from "@/components/TaskList.vue";
     TaskList,
   },
 })
-export default class HomeView extends Vue {}
+export default class TaskView extends Vue {}
 </script>
