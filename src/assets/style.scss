@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;800;900&display=swap');
+
+h1,h2,h3,h4,h5,h6{
+  font-family: $heading-font-family;
+  font-weight: $heading-font-weight;
+}
+.container {
+  width: 80%;
+  padding-right: 0.75rem;
+  padding-left: 0.75rem;
+  margin-right: auto;
+  margin-left: auto;
+  background: #fff;
+  height: 80vh;
+  }
+  
+  input[type="text"],
+  select, textarea {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  input::placeholder, textarea::placeholder {
+      font-family: Montserrat;
+  }
+
+  input[type="date"] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+   }
+  
+  
+  input[type="submit"]:hover {
+    background: #45a049;
+  }
+  
+  .label {
+      font-family: Montserrat;
+      color: #646664c2;
+      font-size: 18px;
+  }
+  .center-spaced{
+      display: flex;
+      justify-content: space-between;
+  }
+
+  .right-btn {
+    width: 30%;
+    background-color: rgba(237, 77, 36, 1);
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    display: block;
+  }
+
+  .sm-btn {
+      width: 30px;
+      height: 30px;
+      border: none;
+      color: rgba(255, 0, 0, 0.667);
+      font-size: 28px;
+      font-weight: bold;
+  }
+  body {
+    background: $color-body-bg;
+    font-family: $content-font-family;
+    font-weight: $content-font-weight;
+    color: $color-text;
+  }
+
+  
