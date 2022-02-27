@@ -7,14 +7,14 @@ import { TaskItem } from "@/models/Task"
     loading: boolean
     ToggleAddModal : boolean
     ToggleCommentModal: boolean
-    task: Array<TaskItem>
+    tasks: Array<TaskItem>
     comment: Array<CommentItem>
 
   }
   
   export const state: State = {
       loading: false,
-      task: [],
+      tasks: [],
       comment: [],
       ToggleAddModal: false,
       ToggleCommentModal: false

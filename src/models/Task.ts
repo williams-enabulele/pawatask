@@ -1,8 +1,8 @@
 export interface TaskItem {
-    id: string;
+    id: number;
     title: string;
     description: string;
-    date: Date;
+    date: string;
     priority : string;
     comment: string;
     completed: boolean;

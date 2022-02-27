@@ -25,9 +25,7 @@ const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
 export const actions: ActionTree<State, State> & Actions = {
   async [ActionTypes.GetTaskItems]({ commit }) {
     commit(MutationType.SetLoading, true)
-
     await sleep(1000)
-
     commit(MutationType.SetLoading, false)
     commit(MutationType.SetTasks, [])
   },

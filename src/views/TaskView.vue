@@ -1,10 +1,8 @@
 <template>
   <div class="container">
     <Header/>
-    <EmptyTask/>
-    <NewTask/>
+    <EmptyTask v-if="taskCount"/>
     <TaskList/>
-    <Comment/>
   </div>
 </template>
 
@@ -12,19 +10,39 @@
 
 import { Options, Vue } from "vue-class-component";
 import Header from "@/components/Header.vue";
-import NewTask from "@/components/NewTask.vue";
 import EmptyTask from "@/components/EmptyTask.vue";
-import Comment from "@/components/Comment.vue";
 import TaskList from "@/components/TaskList.vue";
+import { store } from "@/store";
 
 @Options({
   components: {
     Header,
-    NewTask,
     EmptyTask,
-    Comment,
     TaskList,
   },
 })
-export default class TaskView extends Vue {}
+export default class TaskView extends Vue {
+
+  isNewTaskModal = false;
+  isCommentModal = false;
+ 
+  get taskCount(){
+
+    if(store.getters.totalCount >=1){
+      return false
+    }
+    else{
+      return true
+    }
+  }
+
+  toggleTaskModal(){
+    this.isNewTaskModal = !this.isNewTaskModal
+  }
+
+  toggleCommentModal(){
+    this.isCommentModal = !this.isCommentModal
+  }
+
+}
 </script>

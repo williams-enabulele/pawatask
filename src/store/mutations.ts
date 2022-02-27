@@ -8,11 +8,13 @@ export enum MutationType {
   CompleteItem = 'COMPLETE_ITEM',
   CreateComment = 'CREATE_COMMENT',
   SetComments = 'SET_COMMENTS',
-  SetLoading = 'SET_LOADING'
+  SetLoading = 'SET_LOADING',
+  SetToggleAddModal = 'SET_ADD_MODAL_TOGGLE',
+  SetToggleCommentModal ='SET_COMMENT_MODAL'
 }
 
 export type Mutations = {
-  // Task Item
+  
   [MutationType.CreateTask](state: State, item: TaskItem): void
   [MutationType.SetTasks](state: State, items: TaskItem[]): void
   [MutationType.CompleteItem](
@@ -20,25 +22,27 @@ export type Mutations = {
     item: Partial<TaskItem> & { id: number }
   ): void
 
-  // Comment
+  
   [MutationType.CreateComment](state: State, item: CommentItem): void
   [MutationType.SetComments](state: State, items: CommentItem[]): void
    
   [MutationType.SetLoading](state: State, value: boolean): void
+  [MutationType.SetToggleAddModal](state: State, value: boolean):void
+  [MutationType.SetToggleCommentModal](state: State, value: boolean): void
 }
 
 export const mutations: MutationTree<State> & Mutations = {
-  // Task
+
   [MutationType.CreateTask](state, item) {
-    state.task.unshift(item)
+    state.tasks.unshift(item)
   },
   [MutationType.SetTasks](state, items) {
-    state.task = items
+    state.tasks = items
   },
   [MutationType.CompleteItem](state, newItem) {
-    const item = state.task.findIndex(s => s.id === newItem.id)
+    const item = state.tasks.findIndex(s => s.id === newItem.id)
     if (item === -1) return
-    state.task[item] = { ...state.task[item], ...newItem }
+    state.tasks[item] = { ...state.tasks[item], ...newItem }
   },
 
   [MutationType.CreateComment](state, item) {
@@ -50,5 +54,11 @@ export const mutations: MutationTree<State> & Mutations = {
 
   [MutationType.SetLoading](state, value) {
     state.loading = value
+  },
+  [MutationType.SetToggleAddModal](state, value) {
+    state.ToggleAddModal = value
+  },
+  [MutationType.SetToggleCommentModal](state, value) {
+    state.ToggleCommentModal = value
   }
 }

@@ -1,9 +1,9 @@
 <template>
-    <div class="modal" v-if="open">
+    <div class="modal">
     <div class="modal-content">
         <div class="center-spaced">
         <div class="title"><h2>Task Title <i class="lni lni-pencil"></i></h2> </div>
-        <button class="sm-btn">&times;</button>
+        <button class="sm-btn" v-on:click="closeModal">&times;</button>
         </div>
         <p class="description">
             Task description lorem ipsum dolor lorem task description lorem ipsum 
@@ -34,6 +34,8 @@
 </template>
 
 <script lang="ts">
+import { store } from "@/store";
+import { MutationType } from "@/store/mutations";
 import { Options, Vue } from "vue-class-component";
 
 
@@ -44,36 +46,33 @@ import { Options, Vue } from "vue-class-component";
   },
 })
 export default class Comment extends Vue {
-
-   open = false
-   
-  toggleModal(){
-   this.open = !this.open
-  }
-
+  
+  closeModal (){
+     store.commit(MutationType.SetToggleCommentModal, false);
+   }
 }
 </script>
 
 <style scoped  lang="scss">
-  .modal {
-    position: fixed; 
-    z-index: $layer-modal-z-index;
-    padding-top: 100px; 
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color:rgb(0, 25, 25);
-    opacity: 0.698039;
-  }
-  
+ 
   .modal-content {
     background-color: #fefefe;
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
     width:40%;
+     animation: scaled .3s ease-in-out //infinite alternate;
+  }
+
+  @keyframes scaled {
+        0% {
+            transform: scale(0);
+            -webkit-transform: scale(0);
+        }
+        100% {
+            transform: scale(1.0);
+            -webkit-transform: scale(1.0);
+      }
   }
   .wrapper {
     display: flex;
