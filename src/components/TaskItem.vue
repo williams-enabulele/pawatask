@@ -134,9 +134,10 @@ export default class TaskItem extends Vue {
 }
 
 .block {
-    display: block;
+    display: flex;
     position: relative;
     font-size: 22px;
+    margin: 15px;
 }
 
 .block input {
@@ -189,8 +190,9 @@ export default class TaskItem extends Vue {
 }
 
 .mr-5 {
-    margin-left: 35px;
-    display: inline-block;
+    margin-left: 60px;
+    display: flex;
+    margin-top: -12px;
 }
 
 .btn {

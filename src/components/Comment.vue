@@ -37,6 +37,12 @@ import { MutationType } from "@/store/mutations";
 import { Options, Vue } from "vue-class-component";
 
 
+@Options({
+    props: {
+        firstname: String
+    }
+})
+
 export default class Comment extends Vue {
 
 
