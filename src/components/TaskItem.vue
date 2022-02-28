@@ -1,15 +1,25 @@
 <template>
 <div class="spaced">
-    <div v-on:click="markComplete(id, title, description, date, priority,comment, completed)">
-        <label class="block">
-            <input type="checkbox" :checked="false" @change="markComplete()">
-            <span class="checkmark"></span>
-        </label>
-        <span class="mr-5">{{title}}</span>
+ <div title=".check" v-on:click="markComplete(id, title, description, date, priority,comment, completed)">
+    <div class="check">
+      <input type="checkbox" value="None" id="check" name="check" :checked=false @change="markComplete()" />
+      <label for="check"></label>
+          {{ title}}
     </div>
-    <p>
-       <i class="fa-solid fa-calendar-days"></i>   {{date}} <span class="btn" v-on:click="openCommentModal(id)"><i class="fa-solid fa-comments"></i></span><span class="btn" v-on:click="openEditModal(id)"><i class="fa-solid fa-pen"></i></span>
-    </p>
+  </div>
+    <div class="md-lg-screen"><i class="fa-solid fa-calendar-days"></i>   {{date}} <span class="btn" v-on:click="openCommentModal(id)"><i class="fa-solid fa-comments"></i></span><span class="btn" v-on:click="openEditModal(id)"><i class="fa-solid fa-pen"></i></span></div>
+        
+    <div class="dropdown">
+        <span class="menu"><i class="fa-solid fa-ellipsis-vertical"></i></span>
+        <div class="dropdown-content">
+            <span class="menu-item"  v-on:click="openCommentModal(id)"><i class="fa-solid fa-comments icon"></i>  Comments</span> 
+            <hr>
+            <span class="menu-item"  v-on:click="openEditModal(id)"><i class="fa-solid fa-pen icon"></i>  Edit</span>
+            <hr>
+            <span class="menu-item"> <i class="fa-solid fa-calendar-days"></i> {{date}}</span> 
+        </div>
+    </div>
+
 </div>
 <Comment v-if="isOpenCommentComputed" />
 <NewTask v-if="isOpenEditModal" />
@@ -189,11 +199,6 @@ export default class TaskItem extends Vue {
     transform: rotate(45deg);
 }
 
-.mr-5 {
-    margin-left: 60px;
-    display: flex;
-    margin-top: -12px;
-}
 
 .btn {
     width: 20px;
@@ -207,5 +212,54 @@ export default class TaskItem extends Vue {
 
 .btn:hover {
     background: #d84520;
+}
+
+.dropdown {
+  position: relative;
+}
+.md-lg-screen {
+    
+    justify-content: center;
+    align-items: center;
+}
+
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+
+
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+hr{
+    width: 100%;
+    background:$color-button-bg;
+
+}
+
+.menu{
+    display: flex;
+    padding-top: 23px;
+}
+
+.menu-item{
+    cursor: pointer;
+    padding: 12px 16px;
+    display: block;
+}
+
+.icon {
+    color: $color-button-bg;
 }
 </style>
