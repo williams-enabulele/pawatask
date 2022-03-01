@@ -58,18 +58,17 @@ h1,h2,h3,h4,h5,h6{
   }
 
   .right-btn {
-    width: 40%;
-    background-color: $color-button-bg;
+    width: 160px;
+    background-color: #ed4d24;
     color: white;
-    padding: 14px 20px;
+    padding: 18px 0px;
     margin: 8px 0;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     display: block;
-    box-shadow: 0px 6px 18px -5px rgba(237, 103, 85, 1);
-  }
-
+    box-shadow: 0px 6px 18px -5px #ed6755;
+}
   .right-btn:hover{
     opacity: .8;
   }
@@ -86,7 +85,6 @@ h1,h2,h3,h4,h5,h6{
   .modal {
     position: fixed; 
     z-index: $layer-modal-z-index;
-    padding-top: 100px; 
     left: 0;
     top: 0;
     width: 100%;
@@ -99,13 +97,17 @@ h1,h2,h3,h4,h5,h6{
   .modal-content {
     background-color: #fefefe;
     margin: auto;
-    padding: 35px;
+    padding: 35px 35px;
     border: none;
     width: 40%;
-    height: 500px;
+    max-height: calc(100vh - 200px);
     border-radius: 5px;
     animation: scaled .3s ease-in-out;
     overflow-y: auto;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
   
   body {
@@ -145,11 +147,55 @@ h1,h2,h3,h4,h5,h6{
     background: rgb(255, 70, 70);
 }
 
-  @media screen and (max-width: 540px) {
-    .container{
-      width: 90%;
-    }
-    .modal-content{
-      width: 90%;
-    }
+
+
+
+  /* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .container{
+    width: 90%;
   }
+  .modal-content{
+    width: 90%;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .container{
+    width: 70%;
+  }
+  .modal-content{
+    width: 70%;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .container{
+    width: 60%;
+  }
+  .modal-content{
+    width: 60%;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .container{
+    width: 50%;
+  }
+  .modal-content{
+    width: 50%;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .container{
+    width: 50%;
+  }
+  .modal-content{
+    width: 50%;
+  }
+}

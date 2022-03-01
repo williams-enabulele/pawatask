@@ -39,17 +39,16 @@ export default class Header extends Vue {
 }
 
 .btn {
-
-    background-color: $color-button-bg;
+    background-color: #ed4d24;
     border: none;
     color: white;
-    padding: 15px 15px;
+    padding: 10px 11px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 12px;
     cursor: pointer;
-    box-shadow: 0px 6px 18px -5px rgba(237, 103, 85, 1);
+    box-shadow: 0px 6px 18px -5px #ed6755;
 }
 
 .logo {
