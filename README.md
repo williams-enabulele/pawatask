@@ -1,5 +1,5 @@
 # pawatask
-
+[![Netlify Status](https://api.netlify.com/api/v1/badges/f23b5ff7-68cb-4f9c-9f18-b165040469e7/deploy-status)](https://app.netlify.com/sites/pawatask/deploys)
 ## Project setup
 ```
 npm install
