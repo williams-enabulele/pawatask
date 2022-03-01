@@ -19,14 +19,22 @@
 import { Options, Vue } from "vue-class-component";
 import Comment from "@/components/Comment.vue";
 import NewTask from "@/components/NewTask.vue";
+import TaskStatus  from "@/components/TaskStatus.vue";
 import { store } from "@/store";
 import { MutationType } from "@/store/mutations";
+
+
+export interface stats {
+    completed:Number,
+    total: Number
+}
 
 @Options({
 
     components: {
         Comment,
-        NewTask
+        NewTask,
+        TaskStatus
     },
     props: {
         id: {
@@ -60,7 +68,16 @@ import { MutationType } from "@/store/mutations";
     },
 })
 
+
+
 export default class TaskItem extends Vue {
+    get taskCompleted(){
+       return store.getters.completedCount
+    }
+
+    get totalCount(){
+        return store.getters.totalCount
+    }
 
     get isOpenCommentComputed() {
         return store.state.ToggleCommentModal
@@ -68,6 +85,10 @@ export default class TaskItem extends Vue {
 
     get isOpenEditModalComputed() {
         return store.state.ToggleAddModal
+    }
+
+    get count(){
+        return store.state.tasks.length
     }
     
     markComplete(

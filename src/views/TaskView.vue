@@ -14,8 +14,8 @@ import EmptyTask from "@/components/EmptyTask.vue";
 import TaskList from "@/components/TaskList.vue";
 import Comment from "@/components/Comment.vue";
 import { store } from "@/store";
-import { MutationType } from "@/store/mutations";
 import { ActionTypes } from "@/store/actions";
+
 
 @Options({
   components: {

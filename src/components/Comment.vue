@@ -14,7 +14,7 @@
         </div>
         <div class="card" v-for="(comment, index ) in taskComments" :key="index">
             <div class="card-header">
-                <h3 class="name">{{names[index]}}</h3>
+                <h3 class="name">{{comment.name}}</h3>
                 <p class="date">{{comment.date}}</p>
             </div>
             <div class="card-content">
@@ -43,7 +43,8 @@ export default class Comment extends Vue {
 
     content?: string;
 
-    names = ["James King", "Dev 0x", "Williams"]
+    names = ["James King", "Dev 0x", "Williams", "Paul Rogers", "Adamu Francis"]
+  
     
     currentTask ? : TodoTask
     taskComment: CommentItem = {
@@ -84,12 +85,12 @@ export default class Comment extends Vue {
         this.taskComment = {
             id: Date.now(),
             taskId: this.currentId,
-            name: "Alex Ray",
+            name: this.names[this.rand(0,4)],
             content: this.taskComment.content,
             date: new Date().toLocaleDateString()
         };
         store.commit(MutationType.CreateComment, this.taskComment)
-        this.taskComment.content = ""
+        this.taskComment.content
         this.taskComments
        
     }
@@ -104,6 +105,10 @@ export default class Comment extends Vue {
         store.commit(MutationType.SetCurrentId, 0);
         store.commit(MutationType.SetToggleCommentModal, false)
     }
+
+    rand(min: number, max: number) {
+    return Math.floor(min + Math.random()*(max + 1 - min))
+    };
 }
 </script>
 

@@ -1,6 +1,5 @@
 
-import { TodoTask } from "@/models"
-import { CommentItem } from "@/models/Comment"
+import { CommentItem, TodoTask } from "@/models"
 
 
   export type State = {
@@ -14,7 +13,7 @@ import { CommentItem } from "@/models/Comment"
   
   export const state: State = {
       tasks: Array<TodoTask>(),
-      comments: [],
+      comments: Array<CommentItem>(),
       ToggleAddModal: false,
       ToggleCommentModal: false,
       currentId: 0

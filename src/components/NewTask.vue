@@ -119,6 +119,7 @@ export default class NewTask extends Vue {
             store.commit(MutationType.EditTask, this.taskForm)
             this.toastTopEnd('Your task has been successfully updated!')
         }
+        
         store.commit(MutationType.SetToggleAddModal, false);
     }
 
