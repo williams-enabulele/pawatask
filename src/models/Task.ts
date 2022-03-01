@@ -1,4 +1,4 @@
-export interface TaskItem {
+export interface TodoTask {
     id: number;
     title: string;
     description: string;

@@ -1,9 +1,9 @@
-import { TaskItem } from "./Task";
+import { TodoTask } from "./Task";
 import { CommentItem } from "./Comment";
 import { Priority } from "./Priority";
 
 export {
-    TaskItem,
+    TodoTask,
     CommentItem,
     Priority
 }

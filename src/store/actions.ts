@@ -23,23 +23,23 @@ export type Actions = {
 const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
 
 export const actions: ActionTree<State, State> & Actions = {
-  async [ActionTypes.GetTaskItems]({ commit }) {
-    commit(MutationType.SetLoading, true)
-    await sleep(1000)
-    commit(MutationType.SetLoading, false)
+   [ActionTypes.GetTaskItems]({ commit }) {
     commit(MutationType.SetTasks, [])
   },
-  async [ActionTypes.GetTaskComments]({ commit }) {
-    commit(MutationType.SetLoading, true)
-
-    await sleep(1000)
-
-    commit(MutationType.SetLoading, false)
+  [ActionTypes.GetTaskComments]({ commit }) {
     commit(MutationType.SetComments, [
       {
-        id: "yyy",
+        id: 200,
+        name: "Williams Enabs",
         content: 'Task description lorem ipsum dolor lorem task description lorem ipsum dolor lorem task description lorem ipsum dolor lorem task description lorem ipsum dolor lorem task',
-        date: "4/6/19"
+        date: "27/02/2022"
+
+      },
+      {
+        id: 201,
+        name: "Holand Mathew",
+        content: 'Task description lorem ipsum dolor lorem task description lorem ipsum dolor lorem task description lorem ipsum dolor lorem task description lorem ipsum dolor lorem task',
+        date: "28/02/2022"
 
       }
     ])

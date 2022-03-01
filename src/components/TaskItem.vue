@@ -1,91 +1,115 @@
 <template>
-  <div class="spaced">
+<div class="spaced">
     <div v-on:click="markComplete(id, title, description, date, priority,comment, completed)">
-      <label class="block">
-          <input type="checkbox"  :checked="completed"
-        @change="markComplete()">
-          <span class="checkmark"></span>
-      </label>
-      <span class="mr-5">{{title}}</span>
+        <label class="block">
+            <input type="checkbox" :checked="false" @change="markComplete()">
+            <span class="checkmark"></span>
+        </label>
+        <span class="mr-5">{{title}}</span>
     </div>
-    <div>
-      <i class="fa-solid fa-calendar-day"></i> <span>{{date}}</span> <span class="btn" v-on:click="openModal"><i class="fa-solid fa-comments"></i></span><span class="btn" v-on:click="openEditModal"><i class="fa-solid fa-pen"></i></span>
-    </div>
-  </div>
-  <Comment v-if="isOpenComputed"/>
-  <NewTask v-if="isOpenEditModal"/>
+    <p>
+       <i class="fa-solid fa-calendar-days"></i>   {{date}} <span class="btn" v-on:click="openCommentModal(id)"><i class="fa-solid fa-comments"></i></span><span class="btn" v-on:click="openEditModal(id)"><i class="fa-solid fa-pen"></i></span>
+    </p>
+</div>
+<Comment v-if="isOpenCommentComputed" />
+<NewTask v-if="isOpenEditModal" />
 </template>
 
 <script lang="ts">
-    import { Options, Vue, prop } from "vue-class-component";
-    import Comment  from "@/components/Comment.vue";
-    import NewTask from "@/components/NewTask.vue";
-    import { store } from "@/store";
-    import { MutationType } from "@/store/mutations";
+import { Options, Vue } from "vue-class-component";
+import Comment from "@/components/Comment.vue";
+import NewTask from "@/components/NewTask.vue";
+import { store } from "@/store";
+import { MutationType } from "@/store/mutations";
 
-    @Options({
+@Options({
 
-    components : {
-      Comment,
-      NewTask
+    components: {
+        Comment,
+        NewTask
     },
     props: {
-      id: { type: Number, required: true },
-      title: { type: String, required: true },
-      description: { type: String, required: true },
-      date: { type: String, required: true },
-      priority: { type: String, required: true },
-      comment: { type: String, required: true },
-      completed: { type: Boolean, required: true }
+        id: {
+            type: Number,
+            required: true
+        },
+        title: {
+            type: String,
+            required: true
+        },
+        description: {
+            type: String,
+            required: true
+        },
+        date: {
+            type: String,
+            required: true
+        },
+        priority: {
+            type: String,
+            required: true
+        },
+        comment: {
+            type: String,
+            required: true
+        },
+        completed: {
+            type: Boolean,
+            required: true
+        }
     },
-    })
+})
 
-    export default class TaskItem extends Vue {
+export default class TaskItem extends Vue {
 
-    get isOpenComputed(){
-      return store.state.ToggleCommentModal
+    get isOpenCommentComputed() {
+        return store.state.ToggleCommentModal
     }
 
-    get isOpenEditModalComputed(){
-       return store.state.ToggleAddModal
+    get isOpenEditModalComputed() {
+        return store.state.ToggleAddModal
+    }
+    
+    markComplete(
+        id: string,
+        title: string,
+        description: string,
+        date: string,
+        priority: string,
+        comment: string,
+        completed: boolean
+    ) {
+        store.commit(MutationType.CompleteTask, {
+            id: id,
+            title: title,
+            description: description,
+            date: date,
+            priority: priority,
+            comment: comment,
+            completed: !completed
+        })
     }
 
-     markComplete(
-       id:string, 
-       title:string, 
-       description:string, 
-       date: string, 
-       priority: string, 
-       comment:string, 
-       completed:boolean
-       ){
-      store.commit(MutationType.CompleteItem, {
-      id: id,
-      title: title,
-      description: description,
-      date: date,
-      priority: priority,
-      comment: comment,
-      completed:!completed
-    })
-  }
-
-    openModal(){
-    store.commit(MutationType.SetToggleCommentModal, true);
+    openCommentModal(id: number) {
+        store.commit(MutationType.SetToggleCommentModal, true);
+        store.commit(MutationType.SetCurrentId, id);
     }
 
-    openEditModal(){
-    store.commit(MutationType.SetToggleAddModal, true);
-  }
+    openEditModal(id: number) {
+        store.commit(MutationType.SetToggleAddModal, true);
+        store.commit(MutationType.SetCurrentId, id);
+    }
 }
 </script>
-<style scoped  lang="scss">
+
+<style lang="scss" scoped>
 .spaced {
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 2px solid #b5171740;
-  background: #fff6f6;
-  padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid #b5171717;
+    background: #fff6f6;
+    padding: 15px;
+    margin-top: 25px;
 }
 
 .block {
@@ -95,69 +119,70 @@
 }
 
 .block input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
 }
 
 .checkmark {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height:25px;
-  width: 25px;
-  background-color: rgb(255, 181, 181);
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #f0f0f0;
 }
 
-.block:hover input ~ .checkmark {
-  background-color: #ccc;
+.block:hover input~.checkmark {
+    background-color: rgb(255, 181, 181);
 }
 
-.block input:checked ~ .checkmark {
-  background-color: #313fbeee;
+.block input:checked~.checkmark {
+    background-color: #f0f0f0;
 }
 
 .checkmark:after {
-  content: "";
-  position: absolute;
-  display: none;
+    content: "";
+    position: absolute;
+    display: none;
 }
 
-.block input:checked ~ .checkmark:after {
-  display: block;
+.block input:checked~.checkmark:after {
+    display: block;
 }
 
 .row {
-  display: flex;
+    display: flex;
 }
 
 .block .checkmark:after {
-  left: 9px;
-  top: 5px;
-  width: 5px;
-  height: 10px;
-  border: solid rgb(132, 253, 51);
-  border-width: 0 3px 3px 0;
-  transform: rotate(45deg);
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid rgb(253, 51, 51);
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
 }
 
 .mr-5 {
     margin-left: 35px;
-    display:inline-block;
+    display: inline-block;
 }
 
 .btn {
-  width: 25px;
-  height: 25px;
-  padding: 10px;
-  background: $color-button-bg;
-  margin: 0 5px;
-  color: #fff;
+    width: 20px;
+    height: 20px;
+    padding: 8px;
+    background: $color-button-bg;
+    margin: 0 5px;
+    color: #fff;
+    box-shadow: 0px 6px 18px -5px rgb(250, 38, 38);
 }
 
 .btn:hover {
-  background: #313fbeee;
+    background: #d84520;
 }
 </style>

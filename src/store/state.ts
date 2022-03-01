@@ -1,22 +1,24 @@
 
+import { TodoTask } from "@/models"
 import { CommentItem } from "@/models/Comment"
-import { TaskItem } from "@/models/Task"
 
 
   export type State = {
     loading: boolean
     ToggleAddModal : boolean
     ToggleCommentModal: boolean
-    tasks: Array<TaskItem>
-    comment: Array<CommentItem>
+    tasks: Array<TodoTask>
+    comments: Array<CommentItem>
+    currentId: number;
 
   }
   
   export const state: State = {
       loading: false,
-      tasks: [],
-      comment: [],
+      tasks: Array<TodoTask>(),
+      comments: [],
       ToggleAddModal: false,
-      ToggleCommentModal: false
+      ToggleCommentModal: false,
+      currentId: 0
     
   }
