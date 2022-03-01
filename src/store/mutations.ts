@@ -9,7 +9,6 @@ export enum MutationType {
   CompleteTask = 'COMPLETE_TASK',
   CreateComment = 'CREATE_COMMENT',
   SetComments = 'SET_COMMENTS',
-  SetLoading = 'SET_LOADING',
   SetToggleAddModal = 'SET_ADD_MODAL_TOGGLE',
   SetToggleCommentModal ='SET_COMMENT_MODAL',
   SetCurrentId = 'SET_CURRENT_ID'
@@ -30,8 +29,6 @@ export type Mutations = {
   
   [MutationType.CreateComment](state: State, comment: CommentItem): void
   [MutationType.SetComments](state: State, comments: CommentItem[]): void
-   
-  [MutationType.SetLoading](state: State, value: boolean): void
   [MutationType.SetToggleAddModal](state: State, value: boolean):void
   [MutationType.SetToggleCommentModal](state: State, value: boolean): void
   [MutationType.SetCurrentId](state: State, id: number): void
@@ -62,10 +59,6 @@ export const mutations: MutationTree<State> & Mutations = {
   },
   [MutationType.SetComments](state, comments) {
     state.comments = comments
-  },
-
-  [MutationType.SetLoading](state, value) {
-    state.loading = value
   },
   [MutationType.SetToggleAddModal](state, value) {
     state.ToggleAddModal = value

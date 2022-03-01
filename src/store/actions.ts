@@ -27,21 +27,6 @@ export const actions: ActionTree<State, State> & Actions = {
     commit(MutationType.SetTasks, [])
   },
   [ActionTypes.GetTaskComments]({ commit }) {
-    commit(MutationType.SetComments, [
-      {
-        id: 200,
-        name: "Williams Enabs",
-        content: 'Task description lorem ipsum dolor lorem task description lorem ipsum dolor lorem task description lorem ipsum dolor lorem task description lorem ipsum dolor lorem task',
-        date: "27/02/2022"
-
-      },
-      {
-        id: 201,
-        name: "Holand Mathew",
-        content: 'Task description lorem ipsum dolor lorem task description lorem ipsum dolor lorem task description lorem ipsum dolor lorem task description lorem ipsum dolor lorem task',
-        date: "28/02/2022"
-
-      }
-    ])
+    commit(MutationType.SetComments, [])
     }
 }

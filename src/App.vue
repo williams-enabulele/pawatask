@@ -6,6 +6,4 @@
 @import "@/design";
 @import "@/assets/style.scss";
 
-
-
 </style>

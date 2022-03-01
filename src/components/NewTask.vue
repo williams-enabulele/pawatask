@@ -26,7 +26,10 @@
             <p class="error"> {{ !taskForm.priority ? "Priority is required" : "" }}</p>
             <label class="label">Comments</label>
             <textarea placeholder="Enter comments" v-model="taskForm.comment"></textarea>
-            <button type="submit" class=" d-block mr-0 ml-auto right-btn">{{currentTask? "Update Task" : "Add New Task"}}</button>
+            <div class="right">
+                <button type="submit" class=" d-block mr-0 ml-auto right-btn">{{currentTask? "Update Task" : "Add New Task"}}</button>
+            </div>
+            
 
         </form>
     </div>
@@ -133,6 +136,10 @@ export default class NewTask extends Vue {
 
 <style lang="scss" scoped>
 
+.right {
+    display: flex; 
+    justify-content: flex-end;
+}
 
 @keyframes scaled {
     0% {

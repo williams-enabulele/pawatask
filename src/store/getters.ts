@@ -1,4 +1,4 @@
-import { TodoTask } from '@/models'
+import { CommentItem, TodoTask } from '@/models'
 import { GetterTree } from 'vuex'
 import { State } from './state'
 

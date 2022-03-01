@@ -35,7 +35,7 @@ export default class Header extends Vue {
     display: flex;
     justify-content: space-between;
     padding: 25px 15px;
-    border-bottom: 2px solid rgba(0, 0, 0, 0.466);
+    border-bottom: 2px solid rgb(0 0 0 / 7%);
 }
 
 .btn {

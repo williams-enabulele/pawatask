@@ -14,16 +14,16 @@
         </div>
         <div class="card" v-for="(comment, index ) in taskComments" :key="index">
             <div class="card-header">
-                <h3 class="name">{{comment.name}}</h3>
+                <h3 class="name">{{names[index]}}</h3>
                 <p class="date">{{comment.date}}</p>
             </div>
             <div class="card-content">
                 <p>{{comment.content}}</p>
             </div>
         </div>
-        <form @submit.prevent="createTaskComment" class="wrapper">
-                <textarea placeholder="Write a comment" v-model="taskComment.content"></textarea>
-                <button type="submit" class="right-btn">Add New Task</button>
+        <form class="wrapper">
+            <textarea placeholder="Write a comment" v-model.lazy="taskComment.content"></textarea>
+            <button type="submit" v-on:click="createTaskComment()"  class="right-btn">Add New Task</button>
         </form>
     </div>
 </div>
@@ -34,15 +34,21 @@
 import { CommentItem, TodoTask } from "@/models";
 import { store } from "@/store";
 import { MutationType } from "@/store/mutations";
-import { Vue } from "vue-class-component";
+import { Options, Vue } from "vue-class-component";
+
 
 export default class Comment extends Vue {
 
 
+
+    content?: string;
+
+    names = ["James King", "Dev 0x", "Williams"]
     
     currentTask ? : TodoTask
     taskComment: CommentItem = {
         id: 0,
+        taskId: 0,
         name: "",
         content: "",
         date: ""
@@ -50,11 +56,16 @@ export default class Comment extends Vue {
     
 
     get taskComments(){
-       return store.state.comments
+
+       return store.state.comments.filter(x => x.taskId == this.currentId)
+    }
+
+    get comments(){
+        return store.state.comments
     }
 
     get currentId() {
-        return store.state.currentId
+     return store.state.currentId
     }
 
     get task() {
@@ -63,20 +74,24 @@ export default class Comment extends Vue {
         return this.currentTask
     }
 
+    getContent($event: { target: { value: string } }){
+        return this.content = $event.target.value;
+       
+    }
+
    
     createTaskComment(){
-
-       let content = this.taskComment.content;
         this.taskComment = {
             id: Date.now(),
-            name: "Anonymous",
-            content: content,
+            taskId: this.currentId,
+            name: "Alex Ray",
+            content: this.taskComment.content,
             date: new Date().toLocaleDateString()
         };
-
-        console.log(this.taskComment.content)
         store.commit(MutationType.CreateComment, this.taskComment)
         this.taskComment.content = ""
+        this.taskComments
+       
     }
 
      openEditModal(id: number) {
