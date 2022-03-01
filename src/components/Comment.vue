@@ -23,7 +23,7 @@
         </div>
         <form class="wrapper">
             <textarea placeholder="Write a comment" v-model.lazy="taskComment.content"></textarea>
-            <button type="submit" v-on:click="createTaskComment()"  class="right-btn">Add New Task</button>
+            <button type="submit" v-on:click="createTaskComment()"  class="right-btn">Add Comment</button>
         </form>
     </div>
 </div>
